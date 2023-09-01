@@ -1,6 +1,6 @@
 # PSK Examples Makefile
 CC       = gcc
-LIB_PATH = /usr/local
+LIB_PATH = /opt/homebrew
 CFLAGS   = -Wall -I$(LIB_PATH)/include
 LIBS     = -L$(LIB_PATH)/lib -lm
 

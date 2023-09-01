@@ -48,6 +48,8 @@ static unsigned int my_psk_server_cb(WOLFSSL* ssl, const char* identity,
     (void)ssl;
     (void)key_max_len;
 
+    printf("IDENTITY %s\n", identity);
+
     if (strncmp(identity, "Client_identity", 15) != 0) {
         return 0;
     }
@@ -71,30 +73,33 @@ int main()
     char response[] = "I hear ya for shizzle";
     char suites[]   =
 #ifdef WOLFSSL_STATIC_PSK
-                      "PSK-AES256-GCM-SHA384:"
-                      "PSK-AES128-GCM-SHA256:"
-                      "PSK-AES256-CBC-SHA384:"
-                      "PSK-AES128-CBC-SHA256:"
-                      "PSK-AES128-CBC-SHA:"
-                      "PSK-AES256-CBC-SHA:"
-                      "PSK-CHACHA20-POLY1305:"
+                      /* "PSK-AES256-GCM-SHA384:" */
+                      /* "PSK-AES128-GCM-SHA256:" */
+                      /* "PSK-AES256-CBC-SHA384:" */
+                      /* "PSK-AES128-CBC-SHA256:" */
+                      /* "PSK-AES128-CBC-SHA:" */
+                      /* "PSK-AES256-CBC-SHA:" */
+                      /* "PSK-CHACHA20-POLY1305:" */
 #endif
 #if defined(WOLFSSL_TLS13_DRAFT18) || defined(WOLFSSL_TLS13_DRAFT22) || \
     defined(WOLFSSL_TLS13_DRAFT23) || defined(WOLFSSL_TLS13_DRAFT26) || \
     defined(WOLFSSL_TLS13)
-                      "TLS13-AES128-GCM-SHA256:"
-                      "TLS13-AES256-GCM-SHA384:"
-                      "TLS13-CHACHA20-POLY1305-SHA256:"
+                      /* "TLS13-AES128-GCM-SHA256:" */
+                      /* "TLS13-AES256-GCM-SHA384:" */
+                      /* "TLS13-CHACHA20-POLY1305-SHA256:" */
 #endif
 #ifndef NO_DH
-                      "DHE-PSK-AES256-GCM-SHA384:"
-                      "DHE-PSK-AES128-GCM-SHA256:"
-                      "DHE-PSK-AES256-CBC-SHA384:"
-                      "DHE-PSK-AES128-CBC-SHA256:"
-                      "DHE-PSK-CHACHA20-POLY1305"
+                      /* "DHE-PSK-AES256-GCM-SHA384:" */
+                      /* "DHE-PSK-AES128-GCM-SHA256:" */
+                      /* "DHE-PSK-AES256-CBC-SHA384:" */
+                      /* "DHE-PSK-AES128-CBC-SHA256:" */
+                      "DHE-PSK-CHACHA20-POLY1305:"
 #endif
-                      "ECDHE-PSK-AES128-CBC-SHA256:"
-                      "ECDHE-PSK-CHACHA20-POLY1305:";
+                      /* "ECDHE-PSK-AES128-CBC-SHA256:" */
+                      /* "ECDHE-PSK-CHACHA20-POLY1305:" */
+                      ;
+
+    printf("SUITES %s\n", suites);
 
     struct sockaddr_in  cliAddr, servAddr;
     socklen_t           cliLen;
